@@ -229,6 +229,8 @@
       <DependentUpon>WebApi.edmx</DependentUpon>
       <LastGenOutput>WebApi.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\WEPAPIDEMO-FOLDER.pubxml" />
+    <None Include="Properties\PublishProfiles\WEPAPIDEMO-LOCAL.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
