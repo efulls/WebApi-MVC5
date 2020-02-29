@@ -36,5 +36,29 @@ namespace WebApiConsume.Controllers
             }
             return View(customer);
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(CustomerViewModel customer)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8186/api/customer");
+                var postJob = client.PostAsJsonAsync<CustomerViewModel>("customer", customer);
+                postJob.Wait();
+
+                var postResult = postJob.Result;
+                if (postResult.IsSuccessStatusCode)
+                    return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError(string.Empty, "Server error occured, Please Contact Administrator");
+            
+            return View(customer);
+        }
+
     }
 }
