@@ -97,5 +97,20 @@ namespace WebApiConsume.Controllers
             }
         }
 
+        public ActionResult Delete(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8186/api/");
+                var deleteTask = client.DeleteAsync("customer/" + id.ToString());
+
+                var result = deleteTask.Result;
+                if (result.IsSuccessStatusCode)
+                    return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
