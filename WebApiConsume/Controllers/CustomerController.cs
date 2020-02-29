@@ -60,5 +60,42 @@ namespace WebApiConsume.Controllers
             return View(customer);
         }
 
+        public ActionResult Edit (int id)
+        {
+            CustomerViewModel customer = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8186/api/");
+                var responseTask = client.GetAsync("customer/" + id.ToString());
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if(result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<CustomerViewModel>();
+                    readTask.Wait();
+
+                    customer = readTask.Result;
+                }
+            }
+            return View(customer);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(CustomerViewModel customer)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8186/api/customer");
+                var putTask = client.PutAsJsonAsync<CustomerViewModel>("customer", customer);
+                putTask.Wait();
+
+                var result = putTask.Result;
+                if (result.IsSuccessStatusCode)
+                    return RedirectToAction("Index");
+                return View(customer);
+            }
+        }
+
     }
 }

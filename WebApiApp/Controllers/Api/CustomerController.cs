@@ -32,6 +32,27 @@ namespace WebApiApp.Controllers.Api
 
             }
         }
+        //GET BY ID
+        public IHttpActionResult GetCustomer(int id)
+        {
+            CustomerViewModel customers = null;
+            using (var x = new WebApiEntities())
+            {
+                customers = x.Customers
+                    .Where(i => i.id == id)
+                    .Select(c => new CustomerViewModel()
+                    {
+                        Id = c.id,
+                        Name = c.name,
+                        Email = c.email,
+                        Address = c.address,
+                        Phone = c.phone
+                    }).FirstOrDefault();
+
+                return Ok(customers);
+
+            }
+        }
 
         //POST
         public IHttpActionResult PostNewCustomer(CustomerViewModel customer)
