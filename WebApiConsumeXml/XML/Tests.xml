@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Tests>
+  <Test>
+    <Name>test1</Name>
+    <category>A</category>
+  </Test>
+  <Test>
+    <Name>test2</Name>
+    <category>B</category>
+  </Test>
+  <Test>
+    <Name>test3</Name>
+    <category>C</category>
+  </Test>
+  <Test>
+    <Name>test4</Name>
+    <category>A</category>
+  </Test>
+  <Test>
+    <Name>test5</Name>
+    <category>B</category>
+  </Test>
+</Tests>

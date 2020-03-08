@@ -1,0 +1,19 @@
+﻿
+@model WebApiConsumeXml.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Post"))
+{
+
+    <div class="row">
+        @Html.DropDownList("HomeViewModel.SelectedCategory", Model.Categories, "-- Select Category --", new { @onchange = "this.form.action='/Home/Index'; this.form.submit(); " })
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.SelectionResult): &nbsp; <b>@Model.SelectionResult</b>
+    </div>
+}
